@@ -1,0 +1,17 @@
+{
+  "name": "AI WhatsApp Support Agent",
+  "nodes": [
+    {"parameters": {}, "id":"1", "name":"WhatsApp Webhook", "type":"n8n-nodes-base.webhook", "typeVersion":2, "position":[240,300], "notes":"Connect your WhatsApp provider webhook here."},
+    {"parameters":{"assignments":{"assignments":[{"id":"message","name":"message","type":"string","value":"={{$json.body?.message || $json.message || ''}}"},{"id":"sender","name":"sender","type":"string","value":"={{$json.body?.from || $json.from || ''}}"}]},"options":{}},"id":"2","name":"Prepare Message","type":"n8n-nodes-base.set","typeVersion":3.4,"position":[460,300]},
+    {"parameters":{"assignments":{"assignments":[{"id":"prompt","name":"prompt","type":"string","value":"You are a helpful customer support AI. Classify this WhatsApp message, determine priority, summarize it, and draft a concise professional reply. Message: {{$json.message}}. Return JSON with intent, priority, summary, reply, needs_human."}]},"options":{}},"id":"3","name":"Build AI Prompt","type":"n8n-nodes-base.set","typeVersion":3.4,"position":[680,300]},
+    {"parameters":{"jsCode":"return [{json:{status:'ready_for_ai', sender:$json.sender, prompt:$json.prompt}}];"},"id":"4","name":"AI Processing Input","type":"n8n-nodes-base.code","typeVersion":2,"position":[900,300]}
+  ],
+  "connections":{
+    "WhatsApp Webhook":{"main":[[{"node":"Prepare Message","type":"main","index":0}]]},
+    "Prepare Message":{"main":[[{"node":"Build AI Prompt","type":"main","index":0}]]},
+    "Build AI Prompt":{"main":[[{"node":"AI Processing Input","type":"main","index":0}]]}
+  },
+  "active":false,
+  "settings":{"executionOrder":"v1"},
+  "tags":[]
+}
