@@ -1,0 +1,7 @@
+{
+  "WHATSAPP_PROVIDER":"your-whatsapp-provider",
+  "WEBHOOK_URL":"https://your-domain.example/webhook",
+  "AI_PROVIDER":"your-ai-provider",
+  "API_KEY":"YOUR_API_KEY",
+  "HUMAN_SUPPORT_ENABLED":true
+}
