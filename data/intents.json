@@ -1,0 +1,4 @@
+{
+  "intents":["product_inquiry","order_status","technical_support","billing","complaint","feedback","general_question","human_agent_request"],
+  "priority_levels":["low","medium","high"]
+}
